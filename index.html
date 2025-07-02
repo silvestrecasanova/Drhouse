@@ -97,11 +97,7 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":8600928,"index.wasm":43016933},"focusCanvas":true,"gdextensionLibs":[]};
-
 const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":8601456,"index.wasm":43016933},"focusCanvas":true,"gdextensionLibs":[]};
-
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -198,79 +194,6 @@ const engine = new Engine(GODOT_CONFIG);
 	}
 }());
 		</script>
-		
-<!-- Botón para pantalla completa -->
-<button id="fullscreen-button" style="position: fixed; top: 10px; left: 10px; z-index: 9999; padding: 0.5rem;">
-  Pantalla Completa4
-</button>
-
-<style>
-  html, body {
-    margin: 0; padding: 0; overflow: hidden; height: 100%; width: 100%; background: black;
-  }
-  #canvas {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center center;
-  }
-</style>
-
-<script>
-  // Activar pantalla completa
-  document.getElementById("fullscreen-button").addEventListener("click", () => {
-    const canvas = document.getElementById("canvas");
-    if (!canvas) return;
-
-    if (canvas.requestFullscreen) {
-      canvas.requestFullscreen();
-    } else if (canvas.webkitRequestFullscreen) {
-      canvas.webkitRequestFullscreen();
-    } else if (canvas.mozRequestFullScreen) {
-      canvas.mozRequestFullScreen();
-    } else if (canvas.msRequestFullscreen) {
-      canvas.msRequestFullscreen();
-    }
-  });
-
-  function adjustCanvasForOrientation() {
-    const canvas = document.getElementById('canvas');
-    if (!canvas) return;
-
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-
-    const isPortrait = vh > vw;
-
-    if (isPortrait) {
-      // Cuando está vertical, rotar canvas y escalar para llenar la pantalla
-      // Al rotar 90 grados, ancho y alto se intercambian, así que calculamos escala:
-      const scaleX = vh / vw;
-      const scaleY = vw / vh;
-      const scale = Math.min(scaleX, scaleY);
-
-      // Centrar y transformar canvas
-      canvas.style.transform = `translate(-50%, -50%) rotate(90deg) scale(${scale})`;
-      canvas.style.top = "50%";
-      canvas.style.left = "50%";
-    } else {
-      // En horizontal normal, sin rotar ni escalar extra
-      canvas.style.transform = "translate(-50%, -50%) rotate(0deg) scale(1)";
-      canvas.style.top = "50%";
-      canvas.style.left = "50%";
-    }
-  }
-
-  // Eventos para ajustar el canvas
-  window.addEventListener("load", adjustCanvasForOrientation);
-  window.addEventListener("resize", adjustCanvasForOrientation);
-  window.addEventListener("orientationchange", adjustCanvasForOrientation);
-</script>
-
-
-
-
 	</body>
 </html>
 
